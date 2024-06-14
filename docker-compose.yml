@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: django_user_test
+      POSTGRES_PASSWORD: "12345678"
+      POSTGRES_DB: django_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: ./core
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./core:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  clickhouse:
+      image: yandex/clickhouse-server:latest
+      ports:
+        - "8123:8123"
+        - "9000:9000"
+volumes:
+  postgres_data:

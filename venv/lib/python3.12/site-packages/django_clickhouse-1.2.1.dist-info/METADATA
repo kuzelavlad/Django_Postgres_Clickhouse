@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: django-clickhouse
+Version: 1.2.1
+Summary: Django extension to integrate with ClickHouse database
+Home-page: https://github.com/carrotquest/django-clickhouse
+Author: Carrot quest
+Author-email: m1ha@carrotquest.io
+License: BSD 3-clause "New" or "Revised" License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: celery
+Requires-Dist: Django (>=1.7)
+Requires-Dist: infi.clickhouse-orm
+Requires-Dist: statsd
+Requires-Dist: pytz ; python_version < "3.3"
+Requires-Dist: typing ; python_version < "3.5"
+
+[![Python unit tests](https://github.com/carrotquest/django-clickhouse/actions/workflows/python-tests.yml/badge.svg)](https://github.com/carrotquest/django-clickhouse/actions/workflows/python-tests.yml)  [![Upload Python Package](https://github.com/carrotquest/django-clickhouse/actions/workflows/python-publish.yml/badge.svg)](https://github.com/carrotquest/django-clickhouse/actions/workflows/python-publish.yml) [![Downloads](https://pepy.tech/badge/django-clickhouse/month)](https://pepy.tech/project/django-clickhouse)
+
+# django-clickhouse
+Documentation is [here](docs/index.md)
