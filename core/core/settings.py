@@ -1,9 +1,6 @@
-import os
-from pathlib import Path 
-from dotenv import load_dotenv
+from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 SECRET_KEY = 'django-insecure-m37f_4810!n7)^-xqn%q*r+7$3&9f+1a3lzj1$@^rd4vv-c3=m'
 
@@ -19,9 +16,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
     'users.apps.UsersConfig',
-    'clickhouse.apps.ClickhouseConfig',
-
     'clickhouse_backend',
 
 ]
@@ -41,7 +37,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -60,23 +56,28 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': "12345678",
-        'HOST': 'localhost',
+        'NAME': 'django_post_db',
+        'USER': 'django_admin_db',
+        'PASSWORD': '12345678',
+        'HOST': 'db',
         'PORT': 5432,
     },
 
-    "clickhouse": {
-        "ENGINE": "clickhouse_backend.backend",
-        "NAME": "default",
-        "HOST": "localhost",
-        "USER": "DB_USER",
-        "PASSWORD": "DB_PASSWORD",
+    'clickhouse': {
+        'ENGINE': 'clickhouse_backend.backend',
+        'NAME': 'default',
+        'HOST': 'clickhouse',
+        'USER': 'default',
+        'PASSWORD': '',
+        'PORT': '9000',
+        'OPTIONS': {
+            'settings': {
+                'mutations_sync': 2
+            }
+        }
     }
 }
-
-# DATABASE_ROUTERS = ["dbrouters.ClickHouseRouter"]
+# DATABASE_ROUTERS = ['dbrouters.ClickHouseRouter']
 
 AUTH_PASSWORD_VALIDATORS = [
     {

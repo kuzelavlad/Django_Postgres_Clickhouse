@@ -4,9 +4,9 @@ services:
   db:
     image: postgres:13
     environment:
-      POSTGRES_USER: django_user_test
-      POSTGRES_PASSWORD: "12345678"
-      POSTGRES_DB: django_db
+      POSTGRES_USER: django_admin_db
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: django_post_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -19,10 +19,17 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - clickhouse
+
   clickhouse:
-      image: yandex/clickhouse-server:latest
-      ports:
-        - "8123:8123"
-        - "9000:9000"
+    image: yandex/clickhouse-server:latest
+    platform: linux/amd64
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+
 volumes:
   postgres_data:
+  clickhouse_data:

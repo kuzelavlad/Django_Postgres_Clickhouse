@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ClickHouse Users</title>
+</head>
+<body>
+    <h1>Users from ClickHouse</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.id }}: {{ user.name }} - {{ user.value }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
