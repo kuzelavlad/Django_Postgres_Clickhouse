@@ -8,6 +8,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+KAFKA_BOOTSTRAP_SERVERS = 'localhost:9092'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -18,6 +20,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'users.apps.UsersConfig',
+    'kafka_integration.apps.KafkaIntegrationConfig',
     'clickhouse_backend',
 
 ]
@@ -31,7 +34,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
@@ -77,7 +79,7 @@ DATABASES = {
         }
     }
 }
-# DATABASE_ROUTERS = ['dbrouters.ClickHouseRouter']
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
